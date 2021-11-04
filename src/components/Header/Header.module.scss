@@ -1,0 +1,41 @@
+.root {
+    background-color: firebrick;
+    border-radius: 0 0 15px 15px;
+}
+
+.toolbar {
+    justify-content: space-between;
+}
+
+.list {
+    display: flex;
+}
+
+.item {
+    width: max-content;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    transition: width .5s;
+    &:hover::after {
+        content: '';
+        height: 3px;
+        animation: underline 1s alternate forwards;
+        display: block;
+        position: absolute;
+        background-color: yellow;
+        border-radius: 3px;
+    }
+}
+
+@keyframes underline {
+    0% {
+        width: 0px;
+    }
+    100% {
+        width: 100%;
+    }
+}

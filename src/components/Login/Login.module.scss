@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    height: calc(100vh - 64px);
+    background-position: center;
+    background-size: cover;
+    background-image: url('https://www.globalfocusmagazine.com/wp-content/uploads/2020/02/Engaging_with_technology-scaled.jpg');
+}
+
+.form {
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 15px;
+    margin: auto;
+    background-color: bisque;
+    transition: all 1s;
+    opacity: 0;
+    &-enter-done {
+        opacity: 1;
+    }
+}
+
+.input {
+    margin-bottom: 15px;
+}

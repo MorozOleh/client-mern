@@ -29,10 +29,10 @@ export const Header = () => {
               </ListItem>
               <ListItem  className={styles.item}>
                 <Link 
-                  to="/about" 
+                  to="/pictures" 
                   className={styles.link}
                 >
-                  About page
+                  Pictures
                 </Link>
               </ListItem>
               <ListItem  className={styles.item}>

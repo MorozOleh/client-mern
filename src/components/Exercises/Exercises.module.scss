@@ -1,0 +1,40 @@
+.container {
+  min-height: calc(100vh - 94px);
+  background-image: url('https://pbs.twimg.com/media/E5m3H8_WEAMspaf.jpg');
+  background-size: cover;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 15px;
+}
+
+.calendar {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  background-image: linear-gradient(
+    129.1deg,
+    rgba(243, 199, 83, 1) 26.8%,
+    rgba(18, 235, 207, 1) 114.1%
+  );
+}
+
+.table {
+  width: 100%;
+  padding: 15px;
+  border-radius: 15px;
+  background-image: radial-gradient(
+    circle 926px at 0.4% 2%,
+    rgba(243, 170, 81, 1) 0%,
+    rgba(255, 255, 255, 1) 100.2%,
+    rgba(255, 255, 255, 1) 100.2%
+  );
+}
+
+.tbody {
+  width: 50%;
+}

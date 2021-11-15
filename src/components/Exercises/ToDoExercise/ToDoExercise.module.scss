@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  padding: 15px;
+  background-image: radial-gradient(
+    circle 860px at 11.8% 33.5%,
+    rgba(240, 30, 92, 1) 0%,
+    rgba(244, 49, 74, 1) 30.5%,
+    rgba(249, 75, 37, 1) 56.1%,
+    rgba(250, 88, 19, 1) 75.6%,
+    rgba(253, 102, 2, 1) 100.2%
+  );
+  border-radius: 15px;
+}
+
+.title {
+  text-align: center;
+}
+
+.select {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.list {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
+}
+
+.btn {
+  background-image: linear-gradient(
+    to right,
+    #16a085 0%,
+    #f4d03f 51%,
+    #16a085 100%
+  );
+  margin: 10px auto;
+  padding: 10px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  &:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+// .btn {
+//     background-image: linear-gradient(to right, #24C6DC 0%, #514A9D 51%, #24C6DC 100%);
+//     margin: 10px auto;
+//     padding: 10px 20px;
+//     text-align: center;
+//     text-transform: uppercase;
+//     transition: 0.5s;
+//     background-size: 200% auto;
+//     color: white;
+//     box-shadow: 0 0 20px #eee;
+//     border-radius: 10px;
+//     display: block;
+//     &:hover {
+//         background-position: right center;
+//         /* change the direction of the change here */
+//         color: #fff;
+//         text-decoration: none;
+//     }
+// }

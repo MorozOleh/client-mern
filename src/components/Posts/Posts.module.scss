@@ -1,0 +1,30 @@
+.container {
+  background-color: cadetblue;
+  min-height: calc(100vh - 64px);
+}
+
+.list {
+  background-color: yellowgreen;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.item {
+  border: 2px blueviolet solid;
+  border-radius: 15px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.link {
+  text-decoration: none;
+  li:hover {
+    background-color: beige;
+  }
+}
+
+.title {
+  color: red;
+  text-transform: uppercase;
+}

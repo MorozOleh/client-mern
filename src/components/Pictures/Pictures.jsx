@@ -1,92 +1,110 @@
-import axios from 'axios'
-import React, {useState, useEffect, useRef} from 'react'
-import {Box , Card , CardMedia, Button} from '@material-ui/core'
-import {useMount} from '../../hooks/useMount'
-import { CSSTransition } from 'react-transition-group'
+import axios from 'axios';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Box, Card, CardMedia, Button } from '@material-ui/core';
+import { useMount } from '../../hooks/useMount';
+import { CSSTransition } from 'react-transition-group';
 
-import styles from './Pictures.module.scss'
+import styles from './Pictures.module.scss';
 
 export const Pictures = () => {
-  const [images, setImages] = useState([])
-  const [total, setTotal] = useState(0);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  // const [total, setTotal] = useState(0);
+  const [next, setNext] = useState(true);
   const [limit, setLimit] = useState(6);
-  const [page, setPage] = useState(1)
-  const {isMounted} = useMount()
+  const [page, setPage] = useState(1);
+  const { isMounted } = useMount();
   const contRef = useRef(null);
 
-  const loadImages = async() => {
+  const observer = useRef();
+
+  const loadImages = async () => {
+    setLoading(true);
 
     try {
-      const {data} = await axios.get(`http://localhost:4000/api/pictures?limit=${limit}&page=${page}`);
+      const { data } = await axios.get(
+        `http://localhost:4000/api/pictures?limit=${limit}&page=${page}`
+      );
 
-      setImages(data.images)
-      setTotal(data.total)
-
+      setImages([...images, ...data.images]);
+      setNext(data.next);
+      setLoading(false);
     } catch (error) {
-      console.log(error)
-    }    
-  }
+      setLoading(false);
 
-  useEffect(() => { loadImages() }, [page, limit])
-
-
-  const showNextHandler = () => {
-    if (total > limit * page + 1) {
-      setPage(page + 1)
+      console.log(error);
     }
-  }
-  const showPreviousHandler = () => {
-    if (limit * page - limit  > 0) {
-      setPage(page - 1)
-    }
-  }
+  };
 
+  const lastCardRef = useCallback(
+    (node) => {
+      if (loading) return;
+
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && next) {
+          setPage(page + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading]
+  );
+
+  useEffect(() => {
+    loadImages();
+  }, [page]);
 
   return (
-
     <>
-        <CSSTransition
+      <CSSTransition
         in={isMounted}
         timeout={0}
         classNames={{
           enterDone: styles['root-enter-done'],
-        }}  
+        }}
         nodeRef={contRef}
       >
-        <Box  className={styles.root} ref={contRef}>
-      {images.map(({imageUrl, alt, desc}, id) => {
-        return (
-            <Card
-              key={id}
-              classes={{
-                root: styles.card,
-              
-              }}
-            >
-                <CardMedia src={imageUrl} component="img" className={styles.image}/>
-            </Card>
-        )
-      })}
-      </Box>
+        <Box className={styles.root} ref={contRef}>
+          {images.map(({ imageUrl, alt, desc }, id) => {
+            if (images.length - 1 === id) {
+              return (
+                <Card
+                  ref={lastCardRef}
+                  key={id}
+                  classes={{
+                    root: `${styles.card} ${id}`,
+                  }}
+                >
+                  <CardMedia
+                    src={imageUrl}
+                    component="img"
+                    loading="lazy"
+                    className={styles.image}
+                  />
+                </Card>
+              );
+            }
+            return (
+              <Card
+                key={id}
+                classes={{
+                  root: `${styles.card} ${id}`,
+                }}
+              >
+                <CardMedia
+                  src={imageUrl}
+                  component="img"
+                  loading="lazy"
+                  className={styles.image}
+                />
+              </Card>
+            );
+          })}
+        </Box>
       </CSSTransition>
-      <Box className={styles.buttonWrapper}>
-        <Button
-          className={styles.button}
-          onClick={showPreviousHandler}
-          variant='contained'
-        >
-          show previous
-        </Button>
-        <Button
-          className={styles.button}
-          onClick={showNextHandler}
-          variant='contained'
-        >
-          show next
-        </Button>
-      </Box>
-
     </>
-  )
-
-}
+  );
+};

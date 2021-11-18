@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { Box, Button } from '@material-ui/core';
 import { Formik, Form } from 'formik';
@@ -11,7 +11,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import styles from './Registration.module.scss';
 
-export const Registration = () => {
+const Registration = () => {
   const { push } = useHistory();
   const formRef = useRef(null);
   const { isMounted } = useMount();
@@ -70,6 +70,7 @@ export const Registration = () => {
             return (
               <Form className={styles.form} ref={formRef}>
                 <FormikTextField
+                  autoFocus
                   className={styles.input}
                   name="name"
                   label="First name"
@@ -109,3 +110,5 @@ export const Registration = () => {
     </Box>
   );
 };
+
+export default Registration;

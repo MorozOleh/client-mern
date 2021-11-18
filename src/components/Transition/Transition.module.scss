@@ -1,0 +1,115 @@
+.container {
+  min-height: calc(100vh - 94px);
+  background-color: #4158d0;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+  transition: all 0.5s linear;
+  &-appear {
+    transform: scale(0);
+    &-active {
+      transform: scale(1);
+    }
+  }
+}
+
+.button {
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+  margin: 10px auto;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  transition: all 1s;
+  &:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+  &-appear {
+    opacity: 0;
+    &-active {
+      opacity: 1;
+    }
+  }
+}
+
+.btn {
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+  padding: 5px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  transition: all 1s;
+  &:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+  &-appear {
+    opacity: 0;
+    &-active {
+      opacity: 1;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  transition: all 0.5s linear;
+  &-appear,
+  &-enter {
+    opacity: 0;
+    &-active {
+      opacity: 1;
+    }
+  }
+  &-exit {
+    opacity: 1;
+    &-active {
+      opacity: 0;
+    }
+  }
+}

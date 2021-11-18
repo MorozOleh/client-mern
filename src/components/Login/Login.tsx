@@ -63,6 +63,7 @@ export const Login = () => {
             return (
               <Form className={styles.form} ref={formRef}>
                 <FormikTextField
+                  autoFocus
                   className={styles.input}
                   name="email"
                   label="Email"

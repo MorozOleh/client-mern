@@ -1,31 +1,25 @@
-import { Route, Switch } from 'react-router-dom';
-import { Header } from './components/Header/Header';
-import { Login } from './components/Login/Login';
-import { Registration } from './components/Registration/Registration';
-import { Pictures } from './components/Pictures/Pictures';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from './hooks/useAuth';
-import { Exercises } from './components/Exercises/Exercises';
+import styles from './App.module.scss';
+
+import { Header } from './components/Header/Header';
+
+import { Router } from './router';
 
 export const App = () => {
   const { token, userId } = useAuth();
 
+  const [isAuth, setIsAuth] = useState(!!token);
+
+  useEffect(() => {
+    setIsAuth(!!token);
+  }, [token]);
+
   return (
     <>
       <Header />
-      <Switch>
-        <Route path="/exercises" exact>
-          <Exercises />
-        </Route>
-        <Route path="/pictures" exact>
-          <Pictures />
-        </Route>
-        <Route path="/registration" exact>
-          <Registration />
-        </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-      </Switch>
+
+      <Router auth={isAuth} />
     </>
   );
 };

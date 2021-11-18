@@ -2,14 +2,31 @@
   background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
   box-shadow: 0px 1px 8px #24c64f;
   border-radius: 0 0 15px 15px;
+  transition: all 1s linear;
+  &-appear {
+    transform: translateY(-100%);
+    opacity: 0;
+    &-active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 .toolbar {
   justify-content: space-between;
+  transition: all 1s linear;
 }
 
 .list {
   display: flex;
+  transition: all 1s linear;
+  &-enter {
+    opacity: 0;
+    &-active {
+      opacity: 1;
+    }
+  }
 }
 
 .item {
@@ -29,9 +46,6 @@
     position: absolute;
     background-color: yellow;
     border-radius: 3px;
-  }
-  &-active {
-    color: red;
   }
 }
 
@@ -53,4 +67,16 @@
   border-radius: 15px;
   background-color: red;
   z-index: 10;
+}
+
+.button {
+  transition: all 1s linear;
+  &-enter {
+    opacity: 0;
+    transform: rotate(360deg);
+    &-active {
+      opacity: 1;
+      transform: rotate(0);
+    }
+  }
 }

@@ -8,7 +8,7 @@ import styles from './Exercises.module.scss';
 import axios from 'axios';
 import { ToDoExercise } from './ToDoExercise/ToDoExercise';
 
-export const Exercises = () => {
+const Exercises = () => {
   const [value, setValue] = useState(new Date());
   const [data, setData] = useState(null);
 
@@ -68,3 +68,5 @@ export const Exercises = () => {
     </Box>
   );
 };
+
+export default Exercises;

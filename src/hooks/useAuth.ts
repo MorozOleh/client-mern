@@ -2,13 +2,22 @@ import { useState, useEffect, useCallback } from 'react';
 
 const storageName = 'userData';
 
-export const useAuth = () => {
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState(null);
 
-  const login = useCallback((jwtToken, id) => {
+export interface UseAuthReturnProps {
+  token: string,
+  userId: string,
+  login: (token: string, id: string) => void,
+  logout: () => void
+}
+
+export const useAuth = (): UseAuthReturnProps => {
+  const [token, setToken] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const login = useCallback((jwtToken: string, id: string) => {
     setToken(jwtToken);
     setUserId(id);
+
 
     localStorage.setItem(
       storageName,

@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import { CSSTransition } from 'react-transition-group';
@@ -11,8 +11,8 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import styles from './Registration.module.scss';
 
-const Registration = () => {
-  const { push } = useHistory();
+const Registration = (): JSX.Element => {
+  const navigate = useNavigate();
   const formRef = useRef(null);
   const { isMounted } = useMount();
 
@@ -44,8 +44,6 @@ const Registration = () => {
             email: '',
           }}
           onSubmit={async (values, { resetForm, setErrors }) => {
-            console.log(values);
-
             try {
               const { data } = await axios.post(
                 'http://localhost:4000/api/registration',
@@ -60,9 +58,9 @@ const Registration = () => {
                 throw Error(data.message);
               }
               resetForm();
-              push('/login');
+              navigate('/login');
             } catch (e) {
-              console.log(e.message);
+              console.log(e);
             }
           }}
         >

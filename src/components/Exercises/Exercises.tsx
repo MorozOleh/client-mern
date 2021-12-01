@@ -1,18 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Box, TextField, Typography } from '@material-ui/core';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { useState, useEffect } from 'react';
+import { Box, Typography } from '@material-ui/core';
 import { formatDate } from '../../helpers/utils';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 import styles from './Exercises.module.scss';
 import axios from 'axios';
 import { ToDoExercise } from './ToDoExercise/ToDoExercise';
 
-const Exercises = () => {
-  const [value, setValue] = useState(new Date());
-  const [data, setData] = useState(null);
+interface DataProps {
+  message: string;
+  user: {
+    first_name: string;
+    last_name: string;
+    person_id: string;
+  };
+  done_exercises: {
+    name: string;
+    quantity: string;
+  }[];
+}
 
-  const getData = async (time, id) => {
+const Exercises = (): JSX.Element => {
+  const [value, setValue] = useState(new Date());
+  const [data, setData] = useState<DataProps | null>(null);
+
+  const getData = async (time: string, id: string) => {
     const { data } = await axios.get(
       `http://localhost:4000/api/exercise/?time=${time}&id=${id}`
     );
@@ -28,17 +44,21 @@ const Exercises = () => {
 
   return (
     <Box className={styles.container}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DesktopDatePicker
-          label="Date desktop"
-          inputFormat="dd/MM/yyyy"
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="yyyy/MM/dd"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date picker inline"
           value={value}
-          onChange={setValue}
-          renderInput={(params) => (
-            <TextField classes={{ root: styles.calendar }} {...params} />
-          )}
+          onChange={(e) => {
+            setValue(e);
+          }}
         />
-      </LocalizationProvider>
+      </MuiPickersUtilsProvider>
+
       {data && (
         <Box className={styles.wrapper}>
           <Typography>{data?.user?.first_name}</Typography>
@@ -52,7 +72,7 @@ const Exercises = () => {
             </thead>
 
             <tbody>
-              {data.done_exercises.map((inv, id) => {
+              {data.done_exercises.map((inv, id: number) => {
                 return (
                   <tr key={id}>
                     <td className={styles.tbody}>{inv.name}</td>

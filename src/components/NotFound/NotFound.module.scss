@@ -1,0 +1,12 @@
+.container {
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 260px;
+    text-align: center;
+    color: red;
+}

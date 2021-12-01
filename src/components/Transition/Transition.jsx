@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Box, Button, Typography } from '@material-ui/core';
 import styles from './Transition.module.scss';

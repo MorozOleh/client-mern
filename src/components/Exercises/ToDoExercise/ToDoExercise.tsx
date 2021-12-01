@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -18,7 +18,7 @@ const initialValues = {
   quantity: '',
 };
 
-export const ToDoExercise = () => {
+export const ToDoExercise = (): JSX.Element => {
   const [input, setInput] = useState(initialValues);
   const [inventories, setInventories] = useState([]);
   const [open, setOpen] = useState(false);
@@ -33,7 +33,12 @@ export const ToDoExercise = () => {
     getAllInventories();
   }, []);
 
-  const changeHandler = (e) => {
+  const changeHandler = (
+    e: React.ChangeEvent<{
+      name?: string;
+      value: unknown;
+    }>
+  ) => {
     const { value, name } = e.target;
     setInput({
       ...input,

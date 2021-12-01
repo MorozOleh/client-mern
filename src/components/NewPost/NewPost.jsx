@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Button } from '@material-ui/core';
 import { useHistory } from 'react-router';
@@ -30,8 +30,6 @@ export const NewPost = function () {
         },
       }
     );
-
-    console.log(data);
   };
   return (
     <Box className={styles.container}>

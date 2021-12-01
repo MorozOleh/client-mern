@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { useContext } from 'react';
 
 import {
   List,
@@ -9,14 +9,14 @@ import {
   ListItem,
   IconButton,
 } from '@material-ui/core';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import styles from './Header.module.scss';
-import { useAuth } from '../../hooks/useAuth';
+import { AuthContext } from '../Contexts/AuthContext';
 
-export const Header = () => {
-  const { logout } = useAuth();
+export const Header = (): JSX.Element => {
+  const { logout } = useContext(AuthContext);
 
   return (
     <CSSTransition
@@ -30,7 +30,6 @@ export const Header = () => {
       }}
     >
       {(stage) => {
-        console.log(stage);
         return (
           <AppBar position="static" className={styles.root}>
             <Toolbar className={styles.toolbar}>
@@ -46,29 +45,59 @@ export const Header = () => {
               >
                 <List disablePadding className={styles.list}>
                   <ListItem className={styles.item}>
-                    <NavLink to="/transition" className={`${styles.link}`}>
+                    <NavLink
+                      style={({ isActive }) => ({
+                        color: isActive ? 'black' : 'white',
+                      })}
+                      to="/transition"
+                      className={`${styles.link}`}
+                    >
                       Transition
                     </NavLink>
                   </ListItem>
                   <ListItem className={styles.item}>
-                    <NavLink to="/exercises" className={`${styles.link}`}>
+                    <NavLink
+                      style={({ isActive }) => ({
+                        color: isActive ? 'black' : 'white',
+                      })}
+                      to="/exercises"
+                      className={`${styles.link}`}
+                    >
                       Exercises
                     </NavLink>
                   </ListItem>
                   <ListItem className={styles.item}>
-                    <Link to="/pictures" className={styles.link}>
+                    <NavLink
+                      style={({ isActive }) => ({
+                        color: isActive ? 'black' : 'white',
+                      })}
+                      to="/pictures"
+                      className={styles.link}
+                    >
                       Pictures
-                    </Link>
+                    </NavLink>
                   </ListItem>
                   <ListItem className={styles.item}>
-                    <Link to="/registration" className={styles.link}>
+                    <NavLink
+                      style={({ isActive }) => ({
+                        color: isActive ? 'black' : 'white',
+                      })}
+                      to="/registration"
+                      className={styles.link}
+                    >
                       Registration page
-                    </Link>
+                    </NavLink>
                   </ListItem>
                   <ListItem className={styles.item}>
-                    <Link to="/login" className={styles.link}>
+                    <NavLink
+                      style={({ isActive }) => ({
+                        color: isActive ? 'black' : 'white',
+                      })}
+                      to="/login"
+                      className={styles.link}
+                    >
                       Login page
-                    </Link>
+                    </NavLink>
                   </ListItem>
                 </List>
               </CSSTransition>

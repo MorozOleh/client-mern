@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { Box, Button } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import { CSSTransition } from 'react-transition-group';
@@ -9,12 +9,12 @@ import { FormikTextField } from '../../controls/FormikTextField';
 import axios from 'axios';
 import * as Yup from 'yup';
 import styles from './Login.module.scss';
-import { useAuth } from '../../hooks/useAuth';
+import { AuthContext } from '../Contexts/AuthContext';
 
-export const Login = () => {
+export const Login = (): JSX.Element => {
   const formRef = useRef(null);
   const { isMounted } = useMount();
-  const { login } = useAuth();
+  const { login } = useContext(AuthContext);
 
   return (
     <Box className={styles.container}>
